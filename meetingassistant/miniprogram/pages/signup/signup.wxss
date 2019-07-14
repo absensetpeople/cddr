@@ -1,0 +1,65 @@
+.title{
+  margin-top: 100rpx;
+  background-color: hhh
+}
+.btn1 {
+  width: 70%;
+  margin-top: 20rpx;
+  background-color: #68ACEA;
+  color: white;
+  border-radius: 98rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.btnImg {
+  margin-right: 8rpx;
+  width: 50rpx;
+  height: 50rpx;
+}
+
+.btn1::after {
+  border-radius: 98rpx;
+  border: 0; 
+}
+.drawer_box{
+  width: 550rpx;
+  position: fixed;
+  /* height: 350rpx; */
+  top: 50%;
+  z-index: 1001;
+  background: #ffffff;
+  margin: -350rpx 100rpx 0 100rpx;
+  border-top: 3.51rpx solid rgb(158, 153, 153);
+  border-left: 3.51rpx solid rgb(158, 153, 153);
+  border-right: 3.51rpx solid rgb(158, 153, 153);
+  border-bottom: 3.51rpx solid rgb(158, 153, 153);
+}
+.tip{
+  /* border-top: 1.5px solid #E8E8EA;
+  border-left: 1.5px solid #E8E8EA;
+  border-right: 1.5px solid #E8E8EA; */
+  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 117rpx;
+  padding: 23.4rpx;
+  color: #686565;
+}
+.btn_ok{
+  padding: 23.4rpx;
+  font: 35.1rpx "microsoft yehai";
+  text-align: center;
+  border-top: 3.51rpx solid rgb(177, 177, 177);
+  color: #68ACEA;
+  background-color: rgb(255, 255, 255);
+}
+.inputBox{
+  border: 3.51rpx solid #e0e0e0;
+  width: 70%;
+  height: 70rpx;
+  margin-left: 100rpx;
+}

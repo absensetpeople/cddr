@@ -1,0 +1,102 @@
+/* miniprogram/pages/usercenter/usercenter.wxss */
+/* pages/meeting_list/meeting_list.wxss */
+.meeting{
+  height: 150rpx;
+  padding-left: 20rpx;
+  padding-top: 20rpx;
+  border: 2.34rpx solid rgba(0, 0, 0, 0.1);
+}
+.meetingName{
+  position: relative;
+  margin-left: 20rpx;
+  font-size: 45rpx
+}
+.meetingTime{
+  position: relative;
+  margin-left: 500rpx;
+  margin-top: 10rpx;
+  margin-right: 20rpx;
+  color: rgb(0, 0, 0);
+  font-size: 30rpx;
+}
+.meetingStatu{
+  position: relative;
+  margin-left: 20rpx;
+  margin-top: 10rpx;
+  margin-right: 20rpx;
+  color: rgb(185, 161, 161);
+  font-size: 28rpx;
+}
+.drawer_box{
+  width: 550rpx;
+  position: fixed;
+  /* height: 350rpx; */
+  top: 60%;
+  z-index: 1001;
+  background: #fbfdff;
+  margin: -350rpx 100rpx 0 100rpx;
+  border-top: 3.51rpx solid rgb(158, 153, 153);
+  border-left: 3.51rpx solid rgb(158, 153, 153);
+  border-right: 3.51rpx solid rgb(158, 153, 153);
+  border-bottom: 3.51rpx solid rgb(158, 153, 153);
+}
+.tip{
+  /* border-top: 1.5px solid #E8E8EA;
+  border-left: 1.5px solid #E8E8EA;
+  border-right: 1.5px solid #E8E8EA; */
+  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 117rpx;
+  padding: 23.4rpx;
+  color: #464343;
+}
+.btn_ok{
+  padding: 23.4rpx;
+  font: 35.1rpx "microsoft yehai";
+  text-align: center;
+  border: 3.51rpx solid #E8E8EA;
+  color: #68ACEA;
+  background-color: rgb(255, 255, 255);
+}
+.drawer_box1{
+  width: 100%;
+  overflow: hidden;
+  /* position: fixed; */
+  z-index: 1001;
+  top:0;
+  background: #ffffff;
+  /* margin: -150px 50rpx 0 50rpx; */
+}
+.drawer_content{
+  border-top: 3.51rpx solid #E8E8EA;
+  height: 100%; 
+  
+  overflow-y: scroll;
+  overflow: hidden;
+  z-index: 1001;
+  width: 100%;
+}
+.creat{
+  float: left;
+  width: 50%;
+  font-size: 40rpx;
+}
+.join{
+  float: right;
+  width: 50%;
+  font-size: 40rpx;
+}
+.Img{
+  height: 50rpx;
+  width: 50rpx;
+  margin-top: 40rpx;
+  margin-right: 50rpx;
+}
+.left{
+  float: left;
+}
+.right{
+  float: right;
+}

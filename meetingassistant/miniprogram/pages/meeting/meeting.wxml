@@ -1,0 +1,18 @@
+<!--miniprogram/pages/meeting/meeting.wxml-->
+<text class='title'>{{meetingname}}</text>
+<text class='state'>{{meetingstate}}</text>
+<view class='record-list'>
+  <view wx:for="{{recordinfo}}" bindtap='selectr' id='{{recordinfo[index].id}}' wx:key="{{item.index}}" class='item'>
+    <view class='record'>
+      <view class='recordName'>{{item.name}}</view>
+      <text class='staterecord'>{{item.state}}</text>
+    </view>
+    <view class='right'>
+      <view class='righttext'>{{item.date}}</view>
+      <view class='righttext'>{{item.time}}</view>
+    </view>
+  </view>
+</view>
+<button class='btn1' bindtap='holdmeeting' wx:if='{{createrflag==true}}'>开会</button>
+<button class='btn1' bindtap='deletecode' wx:if='{{createrflag==true}}'>{{tips}}</button>
+<button class='btn1' bindtap='exitmeeting'>{{exitflag}}</button>

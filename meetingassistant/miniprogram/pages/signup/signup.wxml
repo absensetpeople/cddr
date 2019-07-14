@@ -1,0 +1,23 @@
+<!--miniprogram/pages/signup/signup.wxml-->
+<view class='title'></view>
+<image class='pic_up' src="{{imgurl}}" mode='aspectFit'></image>
+<!-- <button bindtap="upload">上传</button>
+ -->
+ <input class='inputBox' bindinput='input' disabled='{{showModelStatus}}' placeholder='请输入自己的名字'></input>
+<button class='btn1' style='background-color:{{bnt_backgroundUp}};color:white' disabled='{{showModelStatus}}' bindtap="upload">
+    <image class='btnImg' src='../../images/upload.png'></image>
+    <view>上传图片</view>
+ </button>
+<button class='btn1'  bindtap="signup" style='background-color:{{bnt_background}};color:white' disabled="{{bntStatu}}">
+    <image class='btnImg' src='../../images/signup.png'></image>
+    <view>注册</view>
+ </button>
+ <!-- 弹窗 -->
+<view class='drawer_box' wx:if="{{showModelStatus}}" >
+  <view class='tip' >
+     {{tip}}
+  </view>
+  <button class='btn_ok'  bindtap="powerDrawer">
+    <view>确定</view>
+ </button>
+</view>

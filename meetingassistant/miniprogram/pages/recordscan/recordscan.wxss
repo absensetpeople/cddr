@@ -1,0 +1,37 @@
+/* miniprogram/pages/recordscan/recordscan.wxss */
+Page{
+  height:100%;
+  width:100%;
+}
+.all{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction:row;
+  align-items: center;
+  border-bottom: 3.51rpx solid #e0e0e0
+}
+.text{
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.recordVoice{
+  /* height: 40px;
+  width: 40px; */
+  /* font-size: 28rpx; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0px;
+}
+.image{
+  height:50px;
+  width: 50px;
+}
+.button{
+  margin-top:0px;
+  margin-right:0px;
+}

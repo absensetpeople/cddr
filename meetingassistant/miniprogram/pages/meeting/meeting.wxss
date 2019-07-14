@@ -1,0 +1,99 @@
+/* miniprogram/pages/meeting/meeting.wxss */
+.title{
+  font-size: 50rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.state{
+  font-size: 35rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: rgb(185, 161, 161)
+}
+.record-list{
+  border-bottom: 1.5rpx solid #e0e0e0;
+  border-top: 1.5rpx solid #e0e0e0;
+}
+.record{
+  width: 300rpx;
+  /* border: 1.5rpx solid #e0e0e0; */
+  padding: 20rpx;
+  float: left;
+}
+.recordName{
+  margin-left: 20rpx;
+  font-size: 40rpx
+}
+.btn1 {
+  width: 50%;
+  margin-top: 20rpx;
+  background-color: #68ACEA;
+  color: white;
+  border-radius: 98rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+/* pages/record/record.wxss */
+.list_avatar {
+  width: 100%;
+  /* align-items: center; */
+  /* padding: 0rpx 0;
+  box-sizing: border-box;
+  overflow: hidden;
+  overflow-x: scroll; */
+  white-space: nowrap;
+  display: flex;
+} 
+.avatar image{
+  width: 100rpx;
+  height: 100rpx;
+  margin: 10rpx;
+  border-radius: 50%;
+}
+.avatar {
+  display: inline-block; 
+  height: 150rpx
+}
+.bc{
+  background-color: #f0f0f0
+}
+/* ::-webkit-scrollbar {
+width: 1.5px;
+background-color: #f5f5f5;
+}
+::-webkit-scrollbar-thumb {
+background-color: #999;
+} */
+.name{
+  color: #aaa9a9;
+  font-size:29rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+.staterecord{
+  margin-left: 20rpx;
+  font-size: 30rpx;
+  color: #aaa9a9;
+
+}
+.right{
+  float: right;
+  width: 250rpx;
+  padding: 40rpx;
+}
+.righttext{
+  /* margin-left:0rpx; */
+  /* margin-top: 30rpx; */
+  /* width: 150rpx; */
+  font-size: 28rpx;
+  color:#aaa9a9;
+}
+.item{
+  height: 150rpx;
+}

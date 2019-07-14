@@ -1,0 +1,28 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/signup/signup",
+    "pages/usercenter/usercenter",
+    "pages/camera/camera",
+    "pages/datatest/datatest",
+    "pages/meeting/meeting",
+    "pages/formmeeting/formmeeting",
+    "pages/recordscan/recordscan",
+    "pages/selecttime/selecttime",
+    "pages/recordcreate/recordcreate"
+  ],
+  "window": {
+    "backgroundColor": "#549CF8",
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#549CF8",
+    "navigationBarTitleText": "会议秘书",
+    "navigationBarTextStyle": "white"
+  },
+  "sitemapLocation": "sitemap.json",
+  "plugins": {
+      "WechatSI": {
+        "version": "0.2.3",
+        "provider": "wx069ba97219f66d99"
+      }
+  }
+}

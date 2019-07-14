@@ -1,0 +1,6 @@
+<!--miniprogram/pages/recordcreate/recordcreate.wxml-->
+<text class='tips'>{{tip}}</text>
+<button class='recordClick' bindtap='click'>
+  <image class='clickImg' src='../../images/recordVoice.png'></image>
+</button>
+<button  bindtap='exit'>{{exittip}}</button>

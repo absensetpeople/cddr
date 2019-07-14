@@ -1,0 +1,25 @@
+<!--miniprogram/pages/usercenter/usercenter.wxml-->
+<view class='drawer_box1'>
+<view>
+<button class='creat' bindtap='createmeeting'>发起会议</button>
+<button class='join' bindtap='joinmeeting'>加入会议</button>
+</view>
+<view class='drawer_content'>
+  <view wx:for="{{meetinginfo}}" wx:key="id" >
+    <view class='meeting' bindtap='selectm' id="{{item.id}}" data-name='{{item.name}}'>
+
+    <view class='left'>
+      <view class='meetingName'>{{item.name}}</view>
+      <view class='meetingStatu'>{{item.state}}</view>
+    </view>
+      <view wx:if='{{item.privacy}}' class='right'>
+      <image class='Img' src='../../images/privacy.png'></image>
+      </view>
+  </view>
+  </view>
+</view>
+</view>
+<view class='drawer_box' wx:if="{{showStatus}}" id="{{item.id}}">
+  <view class='tip'>{{tip}}</view>
+  <view class='btn_ok' bindtap='powerDrawer'>确定</view>
+</view>

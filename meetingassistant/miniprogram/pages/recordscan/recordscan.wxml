@@ -1,0 +1,14 @@
+<!--miniprogram/pages/recordscan/recordscan.wxml-->
+<view wx:for="{{messageinfo}}"  id='{{messageinfo[index].recording}}' wx:key="{{item.index}}">
+  <view class='all'>
+    <view class='text'>
+      <text>{{messageinfo[index].speaker}}</text>
+      <text>{{messageinfo[index].str}}</text>
+    </view>
+    <view class='button'>
+      <button class='recordVoice'  bindtap='selectme' id='{{messageinfo[index].recording}}'>
+        <image class='image'src="/images/video.png"></image>
+      </button>
+    </view>
+  </view>
+</view> 

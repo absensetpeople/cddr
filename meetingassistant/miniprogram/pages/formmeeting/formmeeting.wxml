@@ -1,0 +1,11 @@
+<!--miniprogram/pages/formmeeting/formmeeting.wxml-->
+<view class='inputBox'>
+  <input class='input' placeholder='请输入会议名称' bindinput='inputname' wx:if="{{formflag==0&&codeflag==true}}"></input>
+  <input class='input' placeholder='请输入🐎' bindinput='inputcode'></input>
+  <view class='setting' wx:if="{{formflag==0&&codeflag==true}}">
+   <text>隐私会议</text>
+   <switch bindchange='privacysel' color='#549CF8'></switch>
+  </view>
+  <button class='btn1' bindtap='confirm'>{{buttontext}}</button>
+  <button  class='btn1' bindtap='deletetmp' wx:if='{{deleteflag==true}}'>删除创建🐎</button>
+</view>

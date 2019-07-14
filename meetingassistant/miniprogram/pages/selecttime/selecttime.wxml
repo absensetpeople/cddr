@@ -1,0 +1,25 @@
+<!--miniprogram/pages/selecttime/selecttime.wxml-->
+<view class='record'><text class='title'>选择会议时间</text></view>
+<picker mode='date' value='{{da}} 'bindchange='seldate'>
+  <view class='record'>
+    <view class='all'>
+      <view>日期:</view>
+      <view class='valued'>{{da}}</view>
+    </view>
+  </view>
+</picker>
+<picker mode='time' value='{{ti}} 'bindchange='seltime'>
+  <view class='record'>
+    <view class='all'>
+      <view>时间:</view>
+      <view class='valuet'>{{ti}}</view>
+    </view>
+  </view>
+</picker>
+<view class='record'>
+  <view class='all'>
+    <view>会议名:</view>
+    <input  class='value' value='' bindinput='nameinput'></input>
+  </view>
+</view>
+<button class='btn1' bindtap='confirm'>确定</button>

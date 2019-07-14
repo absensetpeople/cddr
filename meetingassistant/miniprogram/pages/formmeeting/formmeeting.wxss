@@ -1,0 +1,32 @@
+/* miniprogram/pages/formmeeting/formmeeting.wxss */
+.input{
+ border: 1.5rpx solid #e0e0e0;
+ width: 70%;
+ margin-left: auto;
+ margin-right: auto;
+ margin-bottom: 50rpx;
+ /* height: 50rpx; */
+ min-height: 80rpx;
+}
+.btn1 {
+  width: 70%;
+  margin-top: 50rpx;
+  background-color: #68ACEA;
+  color: white;
+  border-radius: 98rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+.inputBox{
+  margin-top: 300rpx;
+}
+.setting{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.setting text{
+  margin-right: 230rpx;
+}

@@ -1,0 +1,12 @@
+<view class='page'>
+<view class='Box'>
+  <image class='logoImg' src='../../images/LOGO.png'></image>
+  <view class='tip'>
+   欢迎进入会议秘书
+  </view>
+  <button open-type="getUserInfo" class='btn_confirm'
+      bindgetuserinfo="onGetUserInfo"
+       wx:if='{{usertag==false}}'>授权</button>
+</view>
+</view>
+

@@ -1,0 +1,25 @@
+/* miniprogram/pages/recordcreate/recordcreate.wxss */
+.recordClick{
+  width: 370rpx;
+  height: 370rpx;
+  margin-top: 150rpx;
+  background-color: rgb(71, 157, 255);
+  color: white;
+  border-radius: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+.clickImg{
+  margin-right: 8rpx;
+  width: 200rpx;
+  height: 200rpx;
+}
+.tips{
+  display: flex;
+  /* flex-direction: row; */
+  align-items: center;
+  justify-content: center;
+  margin-top: 150rpx;
+}
