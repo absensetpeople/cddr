@@ -1,2 +1,2 @@
 # cddr
-A repository for cddr's code
+A Wx MicroProgram in order to make record meeting convenient
