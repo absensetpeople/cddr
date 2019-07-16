@@ -21,6 +21,7 @@ Page({
     return new Promise(function(resolve,reject){
       db.collection('meeting').doc(e).get({
         success: res => {
+          //resolve同步查询
           resolve({ num: i, id: res.data._id, name: res.data.meetingname, state: res.data.meetingstate ,privacy:res.data.privacy})
         }
       })
@@ -31,41 +32,43 @@ Page({
     var tmpmeeting=[]
     var temp=[]
     var i=0
-    console.log('sum')
+    //遍历用户信息中的meeting数组
     e.forEach(item => {
       that.search(item.meetingid,i).then(function (res) {
         temp.push(res)
         if(i==e.length){
-          temp.sort(that.compare('num'))
+          temp.sort(that.compare('num'))//按照num排序
           that.setData({
             meetinginfo:temp
           })
-          console.log(that.data.meetinginfo)
         }
       })
       i = i + 1
     })    
   },
 
+  //指定sort方法的排序规则
   compare: function (pro) {
     return function (a, b) {
       return a[pro] - b[pro]
     }
   },
 
+  //选择对应的会议
   selectm:function(e){
     that=this
     var id=e.currentTarget.id
     that.data.meetinginfo.forEach(item=>{
       if(item.id==id){
         app.globalData.currentmeetingid = id
+        //隐私会议要做鉴权
         if(item.privacy==true){
           app.globalData.pri=true
-          console.log(app.globalData.pri)
           wx.navigateTo({
             url: '../camera/camera',
           })
         }
+        //非隐私会议直接进入
         else{
           wx.navigateTo({
             url: '../meeting/meeting',
@@ -77,6 +80,7 @@ Page({
     
   },
 
+  //发起会议
   createmeeting:function(){
     app.globalData.formflag=0
     app.globalData.codeflag=true
@@ -84,7 +88,7 @@ Page({
       url: '../formmeeting/formmeeting',
     })
   },
-
+  //加入会议
   joinmeeting:function(){
     app.globalData.formflag=1
     app.globalData.codeflag = true
@@ -116,16 +120,14 @@ Page({
    */
   onShow: function () {
     that = this
+    //查询用户参加的会议
     db.collection('user').where({ _openid: app.globalData.openid }).get({
       success: res => {
-        console.log(res.data[0])
         app.globalData.userid = res.data[0]._id
         app.globalData.username=res.data[0].username
-        console.log('userid:', app.globalData.userid)
         var userinf = res.data[0]
         app.globalData.meeting=res.data[0].meeting.slice()
         app.globalData.imgid=res.data[0].imgid
-        console.log(res.data[0].meeting)
         if (userinf.meeting.length != 0) {
           that.sum(userinf.meeting)
         }

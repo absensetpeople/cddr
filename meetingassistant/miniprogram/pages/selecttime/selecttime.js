@@ -15,27 +15,28 @@ Page({
     name:''
   },
 
+  //picker组件对应的函数，选择日期
   seldate:function(e){
     this.data.date=e.detail.value
     this.setData({
       da: e.detail.value
     })
   },
-
+  //选择时间
   seltime: function (e) {
-    //console.log(e.detail)
     this.data.time = e.detail.value
     this.setData({
       ti: e.detail.value
     })
   },
-
+  //输入会议名
   nameinput:function(e){
     this.data.name=e.detail.value
   },
 
   confirm:function(){
     that=this
+    //更新数据库，增加一条record
     db.collection('record').add({
       data:{
         recordname:that.data.name,
@@ -45,12 +46,12 @@ Page({
         time:that.data.time
       },
       success:res=>{
+        //更新meeting，关联刚生成的record
         db.collection('meeting').doc(app.globalData.currentmeetingid).update({
           data:{
             record:_.push(res._id)
           },
           success:e=>{
-            console.log('create record success')
             wx.redirectTo({
               url: '../meeting/meeting',
             })

@@ -22,6 +22,7 @@ Page({
 
   upload:function(){
     that=this
+    //选择证件照
     wx.chooseImage({
       count:1,
       sizeType:['compressed'],
@@ -31,9 +32,7 @@ Page({
           imgurl:res.tempFilePaths,
           permitstate:true
         })
-        app.globalData.uploadimgurl=res.tempFilePaths
-
-        console.log("choosesuccess")
+        app.globalData.uploadimgurl=res.tempFilePaths//全局变量记录选择的图片的临时路径
         that.setData({
           bnt_background: '#68ACEA',
           bntStatu: false
@@ -42,10 +41,10 @@ Page({
     })
   },
 
+  //注册button
   signup:function(){
     that=this
     if(that.data.permitstate==true&&that.data.username!=''){
-      console.log(app.globalData.username)
       wx.redirectTo({
         url: '../camera/camera',
       })
@@ -64,6 +63,7 @@ Page({
     }
   },
 
+  //输入用户名
   input:function(e){
     this.setData({
       username:e.detail.value

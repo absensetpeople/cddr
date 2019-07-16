@@ -20,36 +20,35 @@ Page({
     imageABase64: '', //base64的文件
     imageBBase64: '', 
     privacy:false,
-    urla:''
+    urla:''//云端图片的url
   },
 
   camera:function(){
     that = this
     const ctx = wx.createCameraContext()
+    //判断是注册还是鉴权
     if(that.data.privacy==false){
-      console.log(that.data.privacy)
+      //打开之前上传的图片
       file.readFile({
         filePath:app.globalData.uploadimgurl[0],
-        encoding:'base64',
+        encoding:'base64',//用base64编码
         success:function(e){
           that.data.imageABase64=e.data
           //camera
           ctx.takePhoto({
             quality: 'high',
             success: res => {
-              console.log('camera')
               file.readFile({
                 filePath: res.tempImagePath,
                 encoding: 'base64',
                 success: function (e) {
-                  console.log("transfersuc")
                   that.setData({
-                    imageBBase64: e.data
+                    imageBBase64: e.data//所拍照片的数据
                   })
-                  //that.submit()
+                  //向腾讯云的人脸比对api发出请求
                   wx.request({
                     url: 'https://iai.tencentcloudapi.com',
-                    data: that.submit(),
+                    data: that.submit(),//submit函数生成接口所需的所有参数
                     method: 'post',
                     header: {
                       'content-type': 'application/x-www-form-urlencoded'
@@ -57,7 +56,8 @@ Page({
                     success: res => {
                       console.log("apisucc")
                       console.log(res.data.Response)
-                      if (res.data.Response.Score > 90) {
+                      //判断api返回的分数值
+                      if (res.data.Response.Score > 90) {//是同一个人
                         that.setData({
                           permitstate: true,
                           tip:'身份核验通过',
@@ -87,26 +87,25 @@ Page({
         }
       })
     }
+    //鉴权流程
     else{
-      console.log(that.data.privacy)
-      console.log('验证ing')
+      //获取用户注册时存储在云端的证件照的临时链接
       wx.cloud.getTempFileURL({
         fileList:[{fileID:app.globalData.imgid}],
         success:res=>{
-          console.log('get success:',res.fileList[0].tempFileURL)
           that.data.urla=res.fileList[0].tempFileURL
+          //camera
           ctx.takePhoto({
             quality: 'high',
             success: res => {
-              console.log('camera')
               file.readFile({
                 filePath: res.tempImagePath,
                 encoding: 'base64',
                 success: function (e) {
-                  console.log("transfersuc")
                   that.setData({
                     imageBBase64: e.data
                   })
+                  //向api发起请求
                   wx.request({
                     url: 'https://iai.tencentcloudapi.com',
                     data: that.submitB(),
@@ -124,7 +123,7 @@ Page({
                           showModelStatus: true
                         })
                         wx.redirectTo({
-                          url: '../meeting/meeting',
+                          url: '../meeting/meeting',//鉴权通过，允许进入会议界面
                         })
                       }
                       else {
@@ -152,16 +151,16 @@ Page({
     }
   },
 
+  //注册button
   signup:function(){
     that=this
     if(that.data.permitstate){
+      //人脸比对通过，将照片上传至云端
       wx.cloud.uploadFile({
         cloudPath:app.globalData.openid+'.png',
         filePath:app.globalData.uploadimgurl[0],
         success:res=>{
-          console.log("uploadsuccess")
-          console.log(res)
-          console.log(res.fileID)
+          //操作云数据库，增加新的用户信息
           db.collection('user').add({
             data:{
               username:app.globalData.username,
@@ -185,6 +184,7 @@ Page({
     }
   },
 
+  //调用api生成请求参数
   submit() {
     let serectkey = that.data.serectkey;
     let param = {
@@ -208,11 +208,11 @@ Page({
     //签名生成
 
     let sign = 'POSTiai.tencentcloudapi.com/?' + str;
-    sign = b64_hmac_sha1(serectkey, sign);
+    sign = b64_hmac_sha1(serectkey, sign);//加密
     data['Signature'] = sign;
-    console.log("data:", data)
     return data
   },
+  //鉴权时用的submit方法
   submitB() {
     let serectkey = that.data.serectkey;
     let param = {
@@ -238,7 +238,6 @@ Page({
     let sign = 'POSTiai.tencentcloudapi.com/?' + str;
     sign = b64_hmac_sha1(serectkey, sign);
     data['Signature'] = sign;
-    console.log("data:", data)
     return data
   },
   powerDrawer: function () {
@@ -308,6 +307,7 @@ Page({
   }
 })
 
+//字符串排序，用于数字签名的生成
 function ksort(obj) {
   let temp = 'Action';
   let k_arr = [];

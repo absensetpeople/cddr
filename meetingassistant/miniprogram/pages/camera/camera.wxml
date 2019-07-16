@@ -2,13 +2,11 @@
   flash="off"
   binderror="error"
   style="width: 100%; height: 320px;border-radius: 50%;z-index:100"></camera>
-<!-- <button bindtap='camera'>拍照</button> -->
 <button class='btn1'  bindtap="camera">
     <image class='btnImg' src='../../images/camera.png'></image>
     <view>拍照</view>
  </button>
 <text>{{tip}}</text>
-<!-- <button bindtap='signup'>注册</button> -->
 <button class='btn1'  bindtap="signup" wx:if="{{!privacy}}">
     <image class='btnImg' src='../../images/signup.png'></image>
     <view>注册</view>

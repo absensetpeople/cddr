@@ -14,21 +14,19 @@ Page({
     playflag:false
   },
 
+  //list的点击事件，根据点击位置返回不同的id
   selectme:function(e){
-    console.log(e.currentTarget.id)
     if(that.data.playflag==false){
+      //下载对应的音频文件
       wx.cloud.downloadFile({
         fileID: e.currentTarget.id,
         success:res=>{
-          console.log('tmpfilepath:',res.tempFilePath)
+          //播放
           au.src=res.tempFilePath
           au.play()
         }
       })
     }
-  },
-  test:function(e){
-    console.log(e)
   },
   /**
    * 生命周期函数--监听页面加载
@@ -49,9 +47,9 @@ Page({
    */
   onShow: function () {
     that=this
+    //查询会议记录并显示
     db.collection('record').doc(app.globalData.currentrecordid).get({
       success:res=>{
-        console.log('record:',res.data)
         that.setData({
           messageinfo:res.data.text
         })

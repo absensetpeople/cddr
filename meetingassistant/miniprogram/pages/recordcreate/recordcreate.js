@@ -1,12 +1,10 @@
 // miniprogram/pages/recordcreate/recordcreate.js
-var plugin = requirePlugin("WechatSI")
+var plugin = requirePlugin("WechatSI")//引入微信同声传译插件
 const app=getApp()
 const db=wx.cloud.database()
-const recorder=plugin.getRecordRecognitionManager()
-const au=wx.createInnerAudioContext()
+const recorder=plugin.getRecordRecognitionManager()//插件所使用的录音器实例化对象
+const au=wx.createInnerAudioContext()//播放音频文件
 var that
-
-
 
 Page({
 
@@ -22,6 +20,7 @@ Page({
 
   click:function(){
     that=this
+    //开始录音
     if(!that.data.clickflag){
       recorder.start({
         lang:'zh_CN'
@@ -31,6 +30,7 @@ Page({
         tip:'录音ing'
       })
     }
+    //结束录音
     else{
       recorder.stop()
       console.log('stop')
@@ -40,9 +40,9 @@ Page({
     }
   },
   
+  //播放录音文件
   test:function(){
     that=this
-    console.log(that.data.filepath)
     au.src=that.data.filepath
     au.play()
   },
@@ -83,20 +83,21 @@ Page({
       console.error("error msg", res.msg)
     }
 
+    //录音结束，识别语音
     recorder.onStop = function (res) {
-      console.log('result:', res.result)
-      console.log('path',res.tempFilePath)
       that.data.clickflag = !that.data.clickflag
       that.data.filepath=res.tempFilePath
       that.setData({
         tip: res.result
       })
       that.data.num=that.data.num+1
+      //上传音频文件
       wx.cloud.uploadFile({
         cloudPath:app.globalData.currentrecordid+app.globalData.userid+that.data.num+'.mp3',
         filePath:that.data.filepath,
         success:e=>{
           console.log(e.fileID)
+          //更新云数据库中的会议记录
           wx.cloud.callFunction({
             name: 'insertmessage',
             data: {

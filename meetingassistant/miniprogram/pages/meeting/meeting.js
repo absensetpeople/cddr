@@ -29,9 +29,7 @@ Page({
       }
       n=n+1
     })
-    console.log('createrflag',that.data.createrflag)
     app.globalData.meeting.splice(index, 1)
-    console.log(app.globalData.meeting)
     db.collection('user').doc(app.globalData.userid).update({
       data: {
         meeting: app.globalData.meeting
@@ -67,12 +65,10 @@ Page({
   },
 
   search: function (e,i) {
-    //that=this
-    //var tmpmeeting = []
     return new Promise(function (resolve, reject) {
       db.collection('record').doc(e).get({
         success: res => {
-          console.log('res.data',res.data)
+          //异步查询函数使用resolve变同步
           resolve({ num: i, id: res.data._id, name: res.data.recordname, state: res.data.recordstate,time:res.data.time,date:res.data.date })
         }
       })
@@ -80,22 +76,23 @@ Page({
   },
 
   sum: function (e) {
-    //var temprecord = []
     var temp = []
     var tmp=[]
     var i = 0
+    //遍历用户的meeting信息
     e.forEach(item => {
       i=i+1
       that.search(item,i).then(function (res) {
         temp.push(res)
+        //全部查询完毕
         if (i == e.length) {
-          console.log(temp)
           that.sort(temp)
         }
       })
     })
   },
 
+  //排序函数
   sort:function(e){
     that=this
     var tmp=[]
@@ -107,7 +104,6 @@ Page({
         }
       })
     }
-    console.log(tmp)
     that.setData({
       recordinfo:tmp
     })
@@ -158,8 +154,6 @@ Page({
     that=this
     db.collection('meeting').doc(app.globalData.currentmeetingid).get({
       success: res => {
-        console.log(res.data)
-        console.log(app.globalData.userid)
         that.setData({
           meetingname: res.data.meetingname,
           meetingstate: res.data.meetingstate
@@ -169,6 +163,7 @@ Page({
           that.sum(res.data.record)
         }
 
+        //根据用户在该会议中的身份决定button的功能
         if (res.data._openid == app.globalData.openid) {
           app.globalData.authority = 0
           that.setData({
@@ -183,14 +178,18 @@ Page({
             exitflag:'退出会议'
           })
         }
+
+        //查询该会议的邀请码状态
         db.collection('tmpcode').where({id:app.globalData.currentmeetingid}).get({
           success:res=>{
+            //无邀请码
             if(res.data.length==0){
               that.setData({
                 tips:'创建邀请码',
                 codeflag:false
               })
             }
+            //有邀请码
             else{
               that.setData({
                 tips:"删除邀请码",

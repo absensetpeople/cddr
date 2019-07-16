@@ -12,9 +12,6 @@ Page({
     requestResult: '',
     usertag:false
   },
-  confirm:function(){
-
-  },
   onLoad: function() {
     if (!wx.cloud) {
       wx.redirectTo({
@@ -37,34 +34,24 @@ Page({
                 avatarUrl: res.userInfo.avatarUrl,
                 userInfo: res.userInfo
               })
-              //console.log("getsetting")
+              //调用云函数获取openid
               wx.cloud.callFunction({
                 name: 'login',
                 data: {},
                 success: res => {
                   app.globalData.openid = res.result.openid
-                  console.log('[云函数] [login] user openid: ', app.globalData.openid)
-                  
-                  // wx.cloud.callFunction({
-                  //   name:'search',
-                  //   data:{
-                  //     'userid':2
-                  //   },
-                  //   complete: res => {
-                  //     console.log(res)
-                  //   }
-                  // })
                   db.collection('user').where({
                     _openid: app.globalData.openid
                   }).get({
                     success: res => {
-                      //console.log(res.data)
+                      //未注册用户
                       if(res.data.length==0){
                         app.globalData.pri=false
                         wx.redirectTo({
                           url: '../signup/signup',
                         })
                       }
+                      //已注册
                       else{
                         wx.redirectTo({
                           url: '../usercenter/usercenter',
@@ -72,23 +59,16 @@ Page({
                       }
                     }
                   })
-                  
                 },
                 fail: err => {
                   console.error('[云函数] [login] 调用失败', err)
                 }
               })
-
-              
             }
           })
         }
       }
     })
-
-    //that.onGetOpenid()
-    
-
   },
 
   onGetUserInfo: function(e) {
@@ -106,13 +86,11 @@ Page({
       name: 'login',
       data: {},
       success: res => {
-        console.log('[云函数] [login] user openid: ', res.result.openid)
         app.globalData.openid = res.result.openid
         db.collection('user').where({
           _openid: app.globalData.openid
         }).get({
           success: res => {
-            console.log(res.data)
             if (res.data.length == 0) {
               app.globalData.pri = false
               wx.redirectTo({
